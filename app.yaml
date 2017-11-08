@@ -1,0 +1,29 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+skip_files:
+- \.gitignore
+- ^\.git/.*
+- ^node_modules/(.*/)?
+
+libraries:
+- name: webapp2
+  version: "2.5.1"
+
+builtins:
+- deferred: on
+
+# Handlers define how to route requests to your application.
+handlers:
+
+- url: /
+  static_files: public/index.html
+  upload: public/index.html
+
+- url: /dist
+  static_dir: public/dist
+
+- url: /.*
+  static_files: public/index.html
+  upload: public/index.html
