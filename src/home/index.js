@@ -152,17 +152,20 @@ class Square extends React.Component{
   
   render(){
     const SquareIndex = this.props.SquareIndex;
-    let CrossClass, CircleClass;
+    let CrossClass, CircleClass, Draw;
     if (this.props.GameInfo[SquareIndex[0]][SquareIndex[1]] === 0)
         { CrossClass = 'img' ;
           CircleClass = 'img'
           }
       else if (this.props.GameInfo[SquareIndex[0]][SquareIndex[1]] === 1)
         { CrossClass = 'appear' ;
-          CircleClass = 'hide'}
+          CircleClass = 'hide' ;
+          Draw = 'draw'
+        }
       else {
         CrossClass = 'hide' ;
-        CircleClass = 'appear'
+        CircleClass = 'appear' ;
+        Draw = 'draw'
       }
 
     return(
@@ -174,8 +177,8 @@ class Square extends React.Component{
             <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
                 <g id="Artboard-23" transform="translate(-16.000000, -21.000000)" stroke="#39BCD4" stroke-width="16">
                     <g id="Group" className="svg-img" transform="translate(24.000000, 29.000000)">
-                        <path d="M0.497425847,0.497425847 L49.0583794,49.0583794" id="Line"></path>
-                        <path d="M0.497425847,0.497425847 L49.0583794,49.0583794" id="Line" transform="translate(25.000000, 25.000000) scale(-1, 1) translate(-25.000000, -25.000000) "></path>
+                        <path className={Draw} d="M0.497425847,0.497425847 L49.0583794,49.0583794" id="Line"></path>
+                        <path className={Draw + '1'} d="M0.497425847,0.497425847 L49.0583794,49.0583794" id="Line" transform="translate(25.000000, 25.000000) scale(-1, 1) translate(-25.000000, -25.000000) "></path>
                     </g>
                 </g>
             </g>
@@ -188,15 +191,11 @@ class Square extends React.Component{
         <svg className={CircleClass} width="86px" height="88px" viewBox="0 0 86 88" version="1.1" >
         <title>Oval 5</title>
         <desc>Created with Sketch.</desc>
-          <defs>
-              <circle id="path-1" cx="41" cy="71" r="35"></circle>
-            
-          </defs>
           <g id="Page-1" stroke="none"  fill="none" fill-rule="evenodd">
               <g id="Artboard-21" transform="translate(0.000000, -26.000000)">
                   <g id="Oval-5">
                       <use fill="black" fill-opacity="1" filter="url(#filter-2)"></use>
-                      <circle stroke="#D7B8FC" className="svg-img" cx="41" cy="71" r="27"></circle>
+                      <circle className={Draw + ' svg-img'}  stroke="#D7B8FC" cx="41" cy="71" r="27" ></circle>
                   </g>
               </g>
           </g>
