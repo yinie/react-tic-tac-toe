@@ -1,6 +1,84 @@
 import React from 'react';
 import '../style.css';
 
+
+class Winblock extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  render(){
+
+    const ifPlayerWin = this.props.ifPlayerWin;
+    const Player = this.props.Player;
+
+
+    let WinPlayer, WinClass, ImgClass
+
+
+    if ( Player === 2 ){
+      WinPlayer = (
+
+      <svg  width="50px" height="50px" viewBox="0 0 66 66" version="1.1" >
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+                <g id="Artboard-23" transform="translate(-16.000000, -21.000000)" stroke="#39BCD4" stroke-width="16">
+                    <g id="Group" className="svg-img" transform="translate(24.000000, 29.000000)">
+                        <path d="M0.497425847,0.497425847 L49.0583794,49.0583794" id="Line"></path>
+                        <path d="M0.497425847,0.497425847 L49.0583794,49.0583794" id="Line" transform="translate(25.000000, 25.000000) scale(-1, 1) translate(-25.000000, -25.000000) "></path>
+                    </g>
+                </g>
+            </g>
+        </svg>
+
+
+    )
+     
+
+    }else{
+      WinPlayer = (
+
+      <svg  width="86px" height="88px" viewBox="0 0 86 88" version="1.1" >
+        <title>Oval 5</title>
+        <desc>Created with Sketch.</desc>
+          <g id="Page-1" stroke="none"  fill="none" fill-rule="evenodd">
+              <g id="Artboard-21" transform="translate(0.000000, -26.000000)">
+                  <g id="Oval-5">
+                      <use fill="black" fill-opacity="1" filter="url(#filter-2)"></use>
+                      <circle className="svg-img" stroke="#D7B8FC" cx="41" cy="71" r="27" ></circle>
+                  </g>
+              </g>
+          </g>
+        </svg>
+    )
+
+    }
+
+    
+
+    if (ifPlayerWin === true){
+      console.log('palyer win');
+
+      WinClass = 'win-block win';
+      ImgClass = 'win-img';
+
+    }else{
+      WinClass = 'win-block'
+      ImgClass = 'cele-img'
+    }
+
+    return(
+
+      <div className={WinClass}>
+        <div><img className={ImgClass}  src="img/win-img.png"/></div>
+        <h1 className="win-msg">{WinPlayer} Win!</h1>
+       </div>
+
+    )
+  }
+
+
+
+}
 class PlayTag extends React.Component{
   constructor(props){
     super(props);
@@ -278,24 +356,7 @@ class Board extends React.Component{
 
   render(){
 
-    let WinPlayer
-
-    WinPlayer = (
-
-      <svg  width="50px" height="50px" viewBox="0 0 66 66" version="1.1" >
-            <defs></defs>
-            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-                <g id="Artboard-23" transform="translate(-16.000000, -21.000000)" stroke="#39BCD4" stroke-width="16">
-                    <g id="Group" className="svg-img" transform="translate(24.000000, 29.000000)">
-                        <path d="M0.497425847,0.497425847 L49.0583794,49.0583794" id="Line"></path>
-                        <path d="M0.497425847,0.497425847 L49.0583794,49.0583794" id="Line" transform="translate(25.000000, 25.000000) scale(-1, 1) translate(-25.000000, -25.000000) "></path>
-                    </g>
-                </g>
-            </g>
-        </svg>
-
-
-    )
+ 
 
     return(
     <div className="main-content">
@@ -305,12 +366,9 @@ class Board extends React.Component{
      </div>
 
      <div className="right-content">
-       <p>Game Staus: {this.state.Msg}</p>
+      
+       <Winblock ifPlayerWin={this.state.ifPlayerWin} Player={this.state.PlayerTurn}/>
 
-       <div className="win-block">
-        <div className="win-img"></div>
-        <h1 className="game-title">{WinPlayer} Win!</h1>
-       </div>
        <div className="turn-container">
          <PlayTag Player={1} currentPlayer={this.state.PlayerTurn}/>
          <PlayTag Player={2} currentPlayer={this.state.PlayerTurn}/>
